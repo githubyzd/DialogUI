@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context="com.dialog.helper.DialogActivity">
+
+    <Button
+        android:id="@+id/system1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="system1"
+        android:text="系统原生弹出框1按钮" />
+
+    <Button
+        android:id="@+id/system2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="system2"
+        android:text="系统原生弹出框2按钮" />
+
+    <Button
+        android:id="@+id/system3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="system3"
+        android:text="系统原生弹出框3按钮" />
+
+    <Button
+        android:id="@+id/systemList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="systemList"
+        android:text="系统原生列表弹窗" />
+
+    <Button
+        android:id="@+id/systemSingle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="systemSingle"
+        android:text="系统原生单选框" />
+
+    <Button
+        android:id="@+id/systemMulti"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="systemMulti"
+        android:text="系统原生多选框" />
+
+    <Button
+        android:id="@+id/systemProgress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="systemProgress"
+        android:text="系统原生等待弹窗" />
+
+    <Button
+        android:id="@+id/systemProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="systemProgressbar"
+        android:text="系统原生进度条弹窗" />
+
+    <Button
+        android:id="@+id/systemEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="systemEdit"
+        android:text="系统原生编辑弹窗" />
+
+</LinearLayout>
