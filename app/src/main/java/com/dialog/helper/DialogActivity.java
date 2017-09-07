@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.dialog.helper.customdialog.DialogHelper;
+import com.dialog.helper.customdialog.DialogListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +28,7 @@ public class DialogActivity extends AppCompatActivity {
                 .setTitle("警告")
                 .setMessage("您的手机即将爆炸，请马上扔掉！！！")
                 .setIcon(android.R.drawable.sym_def_app_icon)
-                .setCancelable(false)
+                .setCancelable(true)
                 .setPositiveButton("扔掉", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -40,7 +43,7 @@ public class DialogActivity extends AppCompatActivity {
                 .setTitle("警告")
                 .setMessage("您的手机即将爆炸，请马上扔掉！！！")
                 .setIcon(android.R.drawable.sym_def_app_icon)
-                .setCancelable(false)
+                .setCancelable(true)
                 .setPositiveButton("扔掉", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -61,7 +64,7 @@ public class DialogActivity extends AppCompatActivity {
                 .setTitle("警告")
                 .setMessage("您的手机即将爆炸，请马上扔掉！！！")
                 .setIcon(android.R.drawable.sym_def_app_icon)
-                .setCancelable(false)
+                .setCancelable(true)
                 .setPositiveButton("扔掉", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -88,7 +91,7 @@ public class DialogActivity extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setTitle("请选择你喜欢的类型")
                 .setIcon(android.R.drawable.sym_def_app_icon)
-                .setCancelable(false)
+                .setCancelable(true)
                 .setItems(items, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -105,7 +108,7 @@ public class DialogActivity extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setTitle("单选框")
                 .setIcon(android.R.drawable.sym_def_app_icon)
-                .setCancelable(false)
+                .setCancelable(true)
                 .setSingleChoiceItems(items, 2, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -130,7 +133,7 @@ public class DialogActivity extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setTitle("多选框")
                 .setIcon(android.R.drawable.sym_def_app_icon)
-                .setCancelable(false)
+                .setCancelable(true)
                 .setMultiChoiceItems(items, choices, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
@@ -162,7 +165,7 @@ public class DialogActivity extends AppCompatActivity {
         waitingDialog.setTitle("我是一个等待Dialog");
         waitingDialog.setMessage("等待中...");
         waitingDialog.setIndeterminate(true);
-        waitingDialog.setCancelable(false);
+        waitingDialog.setCancelable(true);
         waitingDialog.show();
     }
 
@@ -211,5 +214,72 @@ public class DialogActivity extends AppCompatActivity {
                                 Toast.LENGTH_SHORT).show();
                     }
                 }).show();
+    }
+
+
+    public void customAlert1(View view) {
+        DialogHelper.showAlertOneBtn(this, true, "标题", "少年努力，老大徒伤悲！！！", "确定", new DialogListener() {
+            @Override
+            public void onPositive() {
+                Toast.makeText(DialogActivity.this, "确定", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void customAlert2(View view) {
+        DialogHelper.showAlertTwoBtn(this, true, "标题", "少年努力，老大徒伤悲！！！", "确定", "取消", new DialogListener() {
+            @Override
+            public void onPositive() {
+                Toast.makeText(DialogActivity.this, "确定", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNegative() {
+                Toast.makeText(DialogActivity.this, "取消", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+    public void customAlert3(View view) {
+        DialogHelper.showAlertThreeBtn(this, true, "标题", "少年努力，老大徒伤悲！！！", "确定", "稍后提醒", "取消", new DialogListener() {
+            @Override
+            public void onPositive() {
+                Toast.makeText(DialogActivity.this, "确定", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNegative() {
+                Toast.makeText(DialogActivity.this, "取消", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNeutral() {
+                Toast.makeText(DialogActivity.this, "稍后提醒", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void customEdit(View view) {
+        DialogHelper.showAlertEdit(this, true, "登录", "请输入用户名", "请输入密码", "登录", "取消", new DialogListener() {
+            @Override
+            public void onGetInput(CharSequence input1, CharSequence input2) {
+                Toast.makeText(DialogActivity.this, "input1:" + input1 + "   input2:" + input2, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onTextChanges(CharSequence input1, CharSequence input2) {
+                Toast.makeText(DialogActivity.this, "input1:" + input1 + "   input2:" + input2, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancle() {
+                Toast.makeText(DialogActivity.this, "取消", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void customListCenter(){
+
     }
 }
