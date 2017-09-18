@@ -49,4 +49,15 @@ public abstract class DialogListener {
     public void onGetChoose(boolean[] states) {
 
     }
+
+    /**
+     * 日期
+     *
+     * @param tag
+     * @param selectedDate
+     */
+    public void onSaveSelectedDate(int tag, String selectedDate) {
+    }
+
+    ;
 }

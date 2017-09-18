@@ -5,11 +5,14 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.StackView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dialog.helper.R;
@@ -22,6 +25,7 @@ public class DialogHelper {
 
     private static AlertDialog alertDialog;
     private static Dialog dialog;
+
     /**
      * @param context
      * @param cancelAble
@@ -82,8 +86,8 @@ public class DialogHelper {
                 .show();
     }
 
-    public static void showLoading(Context context, CharSequence msg, boolean isVertical, boolean cancleable, boolean isWhiteBg){
-        dialog = new Dialog(context,R.style.dialog);
+    public static void showLoading(Context context, CharSequence msg, boolean isVertical, boolean cancleable, boolean isWhiteBg) {
+        dialog = new Dialog(context, R.style.dialog);
         dialog.setCancelable(cancleable);
         View root;
         if (isVertical) {
@@ -107,6 +111,69 @@ public class DialogHelper {
         }
         dialog.setContentView(root);
         dialog.show();
+    }
+
+    public static void buildDatePick(Context context, int gravity, String title, Long data, int dateType, final int tag, final DialogListener listener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        View root = View.inflate(context, R.layout.dialogui_datepick_layout, null);
+
+        RelativeLayout rl_title_panel = (RelativeLayout) root
+                .findViewById(R.id.rl_title_panel);
+        FrameLayout flFirst = (FrameLayout) root
+                .findViewById(R.id.fl_first);
+        FrameLayout flNext = (FrameLayout) root
+                .findViewById(R.id.fl_next);
+        TextView tv_title = (TextView) root
+                .findViewById(R.id.tv_title);
+        TextView tv_first = (TextView) root
+                .findViewById(R.id.tv_first);
+        TextView tv_next = (TextView) root
+                .findViewById(R.id.tv_next);
+        FrameLayout fl_top_customPanel = (FrameLayout) root
+                .findViewById(R.id.fl_top_customPanel);
+        final DateSelectorWheelView dwvDate = (DateSelectorWheelView) root
+                .findViewById(R.id.dwv_date);
+        FrameLayout fl_bottom_customPanel = (FrameLayout) root
+                .findViewById(R.id.fl_bottom_customPanel);
+        dwvDate.setShowDate(data);
+        dwvDate.setShowDateType(dateType);
+        dwvDate.setTitleClick(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int id = v.getId();
+                if (id == R.id.rl_date_time_title) {
+                    if (dwvDate.getDateSelectorVisibility() == View.VISIBLE) {
+                        dwvDate.setDateSelectorVisiblility(View.GONE);
+                    } else {
+                        dwvDate.setDateSelectorVisiblility(View.VISIBLE);
+                    }
+                }
+            }
+        });
+
+        builder.setView(root);
+        alertDialog = builder.create();
+        if (gravity == Gravity.BOTTOM) {
+            Window window = alertDialog.getWindow();
+            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+
+        flFirst.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
+        flNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (null != listener) {
+                    listener.onSaveSelectedDate(tag, dwvDate.getSelectedDate());
+                }
+                dismiss();
+            }
+        });
+        alertDialog.show();
     }
 
     public static void dismiss() {

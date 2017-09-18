@@ -5,10 +5,12 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.dialog.helper.customdialog.DateSelectorWheelView;
 import com.dialog.helper.customdialog.DialogHelper;
 import com.dialog.helper.customdialog.DialogListener;
 
@@ -279,8 +281,43 @@ public class DialogActivity extends AppCompatActivity {
         });
     }
 
-    public void loading(View view){
-        DialogHelper.showLoading(this,"加载中...",true,true,false);
+    public void loading(View view) {
+        DialogHelper.showLoading(this, "加载中...", true, true, false);
     }
 
+    public void btn_select_ym(View view) {
+        DialogHelper.buildDatePick(this, Gravity.CENTER, "日期", System.currentTimeMillis() + 60000, DateSelectorWheelView.TYPE_YYYYMM, 0, new DialogListener() {
+            @Override
+            public void onSaveSelectedDate(int tag, String selectedDate) {
+                Toast.makeText(DialogActivity.this,selectedDate,Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void btn_select_ymd(View view) {
+        DialogHelper.buildDatePick(this, Gravity.CENTER, "日期", System.currentTimeMillis() + 60000, DateSelectorWheelView.TYPE_YYYYMMDD, 0, new DialogListener() {
+            @Override
+            public void onSaveSelectedDate(int tag, String selectedDate) {
+                Toast.makeText(DialogActivity.this,selectedDate,Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void btn_select_ymdhm(View view) {
+        DialogHelper.buildDatePick(this, Gravity.CENTER, "日期", System.currentTimeMillis() + 60000, DateSelectorWheelView.TYPE_YYYYMMDDHHMM, 0, new DialogListener() {
+            @Override
+            public void onSaveSelectedDate(int tag, String selectedDate) {
+                Toast.makeText(DialogActivity.this,selectedDate,Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void btn_select_ymdhms(View view) {
+        DialogHelper.buildDatePick(this, Gravity.CENTER, "日期", System.currentTimeMillis() + 60000, DateSelectorWheelView.TYPE_YYYYMMDDHHMMSS, 0, new DialogListener() {
+            @Override
+            public void onSaveSelectedDate(int tag, String selectedDate) {
+                Toast.makeText(DialogActivity.this,selectedDate,Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 }
