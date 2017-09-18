@@ -279,7 +279,8 @@ public class DialogActivity extends AppCompatActivity {
         });
     }
 
-    public void customListCenter(){
-
+    public void loading(View view){
+        DialogHelper.showLoading(this,"加载中...",true,true,false);
     }
+
 }

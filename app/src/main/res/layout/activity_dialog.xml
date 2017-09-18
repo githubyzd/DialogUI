@@ -8,8 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <Button
             android:id="@+id/system1"
@@ -103,11 +103,12 @@
             android:text="自定义输入框" />
 
         <Button
-            android:id="@+id/customListCenter"
+            android:id="@+id/loading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="customListCenter"
-            android:text="自定义中间列表" />
+            android:onClick="loading"
+            android:text="loading" />
+
     </LinearLayout>
 
 </ScrollView>
